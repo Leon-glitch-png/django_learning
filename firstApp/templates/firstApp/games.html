@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Games - First App
+{% endblock %}
+
+{% block content %}
+<div class='p-4 '>
+    <h2 class='text-green-500 text-2xl mb-4'>Game List</h2>
+    <ul class='space-y-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 '>
+        {% for game in games %}
+        <li class='bg-amber-50 p-4 rounded shadow '>
+            <img src="{{ game.icon.url }}" alt="{{ game.name }} Cover" class=" object-cover mb-2 "/>
+            <a href="{% url 'game_detail' game.id %}" class='text-blue-500 hover:underline text-2xl'>{{ game.name }}</a>
+        
+            <p class='text-gray-800'>Released: {{ game.release_date }}</p>
+        </li>
+        {% empty %}
+        <li>No games available.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

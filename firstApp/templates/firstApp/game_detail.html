@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+game.name - Game Details
+{% endblock %}
+
+{% block content %}
+
+<div class='p-4 bg-white rounded shadow max-w-2xl mx-auto'>
+    <h2 class='text-2xl text-green-600 mb-4'>{{ game.name }}</h2>
+    <img src="{{ game.icon.url }}" alt="{{ game.name }} Cover" class="w-48 h-48 object-cover mb-4"/>
+  <strong>Genre:</strong>
+    {% for genre in game_genres %}
+        {{ genre.name }}{% if not forloop.last %}, {% endif %}
+   
+    {% empty %}
+        <p class="text-gray-500">No genre assigned</p>
+    {% endfor %}
+    <p class='text-gray-800'><strong>Release Date:</strong> {{ game.release_date }}</p>
+{% endblock %}
